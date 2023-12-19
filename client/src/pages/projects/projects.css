@@ -1,0 +1,144 @@
+.top-toggler {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top-toggler button {
+  margin: 0 0.3rem;
+  padding: 4px 10px;
+  border: 1px solid burlywood;
+  cursor: pointer;
+  color: black;
+  font-size: 18px;
+  border-radius: 2px;
+}
+.projects_window {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  display: flex;
+  height: auto;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.project {
+  width: 350px;
+  height: 250px;
+  background-color: beige;
+  border-radius: 18px;
+  box-shadow: 0 2px 7px;
+  margin: 0.5rem 0rem;
+  position: relative;
+}
+.project:hover {
+  transform: scale(1.005, 1.005);
+}
+.theme {
+  width: 100%;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  position: relative;
+  height: 80px;
+  /* background-color: rgb(199, 148, 148); */
+  background-color: burlywood;
+}
+.theme p {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: rgb(66, 63, 83);
+  border-top-right-radius: 20px;
+  font-family: arial;
+  font-weight: bold;
+  width: 30%;
+  box-shadow: 0 1px 2px;
+}
+.project_details {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  height: calc(250px - 105px);
+  width: 100%;
+  overflow-y: auto;
+  overflow-y: scroll;
+  padding-left: 0.2rem;
+}
+.project_details h3 {
+  letter-spacing: 1px;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+.pro_title {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: auto;
+  margin: 0.3rem 0rem;
+  flex-wrap: wrap;
+}
+.pro_title h5 {
+  color: blue;
+}
+.pro_title p {
+  color: rgb(63, 59, 88);
+}
+.pro_cont {
+  display: flex;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  flex-wrap: wrap;
+}
+
+.btn_holder {
+  width: 100%;
+  height: 25px;
+  text-align: center;
+}
+.btn_holder button {
+  padding: 4px 10px;
+  border: 1px solid burlywood;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: rgb(212, 237, 212);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.proj_no_log {
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.proj_no_log h3 {
+  margin: 0.5rem 0rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: burlywood;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+.proj_no_log button {
+  border: 1px solid burlywood;
+  min-width: 100px;
+  width: auto;
+  cursor: pointer;
+  padding: 5px 2px;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: arial;
+}
+.proj_no_log button:hover {
+  transition: 0.4s;
+  background-color: black;
+  color: white;
+}
+.proj_no_log img {
+  width: 300px;
+}

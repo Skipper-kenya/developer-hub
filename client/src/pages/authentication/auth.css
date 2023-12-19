@@ -1,0 +1,85 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Sometype+Mono:ital,wght@1,500&display=swap"); */
+.auth-wrapper {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.auth-wrapper h3 {
+  margin: 1rem 0rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.auth-wrapper form {
+  width: 300px;
+  height: auto;
+  padding: 7px;
+  border-radius: 7px;
+  box-shadow: 0 2px 7px;
+  background-color: honeydew;
+}
+.top-wel {
+  height: 80px;
+  display: flex;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.top-wel h4 {
+  font-size: 18px;
+  font-family: "Sometype Mono", monospace;
+}
+.mini-auth {
+  font-family: sans-serif;
+}
+.mini-auth label {
+  display: block;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin: 0.2rem 0rem;
+  color: rgb(27, 24, 24);
+}
+.mini-auth input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid burlywood;
+  outline: 0;
+  font-size: 18px;
+  border-radius: 5px;
+}
+.mini-auth input:focus {
+  border-color: seagreen;
+  transition: 0.2s;
+}
+.auth button {
+  margin: 0.8rem 0rem;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+  letter-spacing: 1px;
+  background-color: seagreen;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.auth button:hover {
+  transition: 0.4s;
+  background-color: green;
+}
+.auth p {
+  text-align: center;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+.auth a {
+  color: blue;
+  text-decoration: underline;
+}

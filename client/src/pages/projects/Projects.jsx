@@ -1,0 +1,122 @@
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
+import Undraw from "../../assets/1.png";
+
+import getDetails from "../../redux/details/detailsAction";
+import { GlobalContext } from "../../context/GlobalProvider";
+
+import "./projects.css";
+import Display from "./Display";
+import { useNavigate } from "react-router-dom";
+const Projects = () => {
+  const navigate = useNavigate();
+
+  const { cookie } = useContext(GlobalContext);
+
+  const [allProjects, setAllProjects] = useState([]);
+  const [myProject, setMyProject] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      dispatch(getDetails());
+      try {
+        setLoading(true);
+        const response = await axios.get(process.env.REACT_APP_GET_PROJECTS);
+        const { projects } = response.data;
+
+        setAllProjects([...projects]);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error.message);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const userId = useSelector((state) => state.userId);
+
+  const handleAllProjects = async () => {
+    setMyProject(false);
+    try {
+      setLoading(true);
+      const response = await axios.get("http://localhost:3005/projects");
+      const { projects } = response.data;
+
+      setAllProjects([...projects]);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.message);
+    }
+  };
+
+  const handleMyProjects = async () => {
+    setMyProject(true);
+
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `${process.env.REACT_APP_GET_MY_PROJECTS}/${userId}`
+      );
+
+      const { myProjects } = response.data;
+
+      setAllProjects([...myProjects]);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <div className="projects_wrapper">
+      {cookie.access_token ? (
+        <>
+          {" "}
+          <div className="top-toggler">
+            <button
+              onClick={handleAllProjects}
+              style={{
+                backgroundColor: myProject ? "transparent" : "blue",
+                color: myProject ? "black" : "white",
+              }}
+            >
+              All Projects
+            </button>
+            <button
+              style={{
+                backgroundColor: myProject ? "blue" : "transparent",
+                color: myProject ? "white" : "black",
+              }}
+              onClick={handleMyProjects}
+            >
+              My Projects
+            </button>
+          </div>
+          <Display
+            allProjects={allProjects}
+            myProject={myProject}
+            loading={loading}
+          />
+        </>
+      ) : (
+        <div className="proj_no_log">
+          <h3>Please Login to Access this page.</h3>
+          <button onClick={() => navigate("/login")}> Login</button>
+          <img src={Undraw} alt="Access denied" />
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Projects;
