@@ -20,6 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await axios.post(process.env.REACT_APP_LOGIN, {
         username,
         password,
@@ -40,9 +41,11 @@ const Login = () => {
       window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
       alert(message);
       if (token) {
+        setLoading(false);
         navigate("/");
       }
     } catch (error) {
+      setLoading(false);
       console.log(`err:login-client:${error.message}`);
     }
   };
@@ -57,6 +60,7 @@ const Login = () => {
         p={password}
         su={setUsername}
         sp={setPassword}
+        loading={loading}
       />
     </>
   );

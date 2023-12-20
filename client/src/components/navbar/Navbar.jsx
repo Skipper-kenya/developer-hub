@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./navbar.css";
 
-import { DotsNine, X } from "phosphor-react";
+import { DotsNine, List, X } from "phosphor-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalProvider";
 
@@ -48,7 +48,7 @@ const Navbar = () => {
       </div>
       <div className="toggle">
         <button onClick={handleToggle}>
-          {isBtnToggle ? <X size={30} /> : <DotsNine size={30} />}
+          {isBtnToggle ? <X size={30} /> : <List size={30} />}
         </button>
       </div>
       <nav
