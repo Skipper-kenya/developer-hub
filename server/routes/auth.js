@@ -50,6 +50,7 @@ router.post("/login", async (req, res) => {
     } else {
       if (result) {
         const token = jwt.sign({ id: user._id }, "rastaGang");
+        res.cookie("access", token);
         return res.send({
           token,
           userId: user._id,

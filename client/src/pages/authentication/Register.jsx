@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(process.env.REGISTER, {
+      const response = await axios.post(process.env.REACT_APP_REGISTER, {
         username,
         password,
       });

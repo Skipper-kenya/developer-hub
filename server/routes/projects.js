@@ -1,4 +1,7 @@
 import express from "express";
+
+import { verifyCreateToken, verifyToken } from "../middlewares/verifyToken.js";
+
 import projectsModel from "../models/projectsModel.js";
 import userModel from "../models/userModel.js";
 import { ObjectId } from "mongodb";
@@ -6,7 +9,7 @@ import { ObjectId } from "mongodb";
 const router = express.Router();
 
 //A REQUEST TO CREATE NEW PROJECT BY AUTHENTICATED USERS
-router.put("/", async (req, res) => {
+router.put("/", verifyCreateToken, async (req, res) => {
   const { userId, projDetails, username } = req.body;
   const { name, description, link, skills } = projDetails;
 
@@ -46,7 +49,7 @@ router.put("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/:token", verifyToken, async (req, res) => {
   try {
     const projects = await projectsModel.find({});
 
@@ -56,8 +59,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/my_projects/:id", async (req, res) => {
+router.get("/my_projects/:id/:token", verifyToken, async (req, res) => {
   const userId = req.params.id;
+
   if (userId) {
     try {
       const myProjects = await projectsModel.find({

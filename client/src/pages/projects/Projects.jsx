@@ -14,6 +14,7 @@ const Projects = () => {
   const navigate = useNavigate();
 
   const { cookie } = useContext(GlobalContext);
+  const token = cookie.access_token;
 
   const [allProjects, setAllProjects] = useState([]);
   const [myProject, setMyProject] = useState(false);
@@ -27,7 +28,9 @@ const Projects = () => {
       dispatch(getDetails());
       try {
         setLoading(true);
-        const response = await axios.get(process.env.REACT_APP_GET_PROJECTS);
+        const response = await axios.get(
+          `${process.env.REACT_APP_GET_PROJECTS}/${token}`
+        );
         const { projects } = response.data;
 
         setAllProjects([...projects]);
@@ -47,7 +50,9 @@ const Projects = () => {
     setMyProject(false);
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3005/projects");
+      const response = await axios.get(
+        `${process.env.REACT_APP_GET_PROJECTS}/${token}`
+      );
       const { projects } = response.data;
 
       setAllProjects([...projects]);
@@ -64,7 +69,7 @@ const Projects = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${process.env.REACT_APP_GET_MY_PROJECTS}/${userId}`
+        `${process.env.REACT_APP_GET_MY_PROJECTS}/${userId}/${token}`
       );
 
       const { myProjects } = response.data;

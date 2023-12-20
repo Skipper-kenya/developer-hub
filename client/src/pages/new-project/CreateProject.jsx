@@ -13,7 +13,7 @@ import { GlobalContext } from "../../context/GlobalProvider";
 
 const CreateProject = () => {
   const { cookie } = useContext(GlobalContext);
-
+  const token = cookie.access_token;
   const navigate = useNavigate();
 
   const [projDetails, setProjDetails] = useState({
@@ -58,6 +58,7 @@ const CreateProject = () => {
         projDetails,
         userId,
         username,
+        token,
       });
 
       const { action, message } = response.data;
