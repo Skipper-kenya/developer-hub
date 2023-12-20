@@ -41,9 +41,9 @@ const Login = () => {
       window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
       alert(message);
       if (token) {
-        setLoading(false);
         navigate("/");
       }
+      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(`err:login-client:${error.message}`);
