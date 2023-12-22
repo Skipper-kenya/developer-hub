@@ -58,7 +58,7 @@ router.get("/:token", verifyToken, async (req, res) => {
     console.log(error.message);
   }
 });
-
+//get req with token and id:
 router.get("/my_projects/:id/:token", verifyToken, async (req, res) => {
   const userId = req.params.id;
 
