@@ -3,6 +3,7 @@ import axios from "axios";
 import Auth from "./Auth";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -24,7 +25,7 @@ const Register = () => {
 
       const { message } = response.data;
       setLoading(false);
-      alert(message);
+      toast(message);
       navigate("/login");
     } catch (error) {
       setLoading(false);

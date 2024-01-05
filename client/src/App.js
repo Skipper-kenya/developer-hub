@@ -1,4 +1,6 @@
 import React from "react";
+import { Toaster } from "sonner";
+
 import Navbar from "./components/navbar/Navbar";
 
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -14,6 +16,7 @@ function App() {
   return (
     <>
       <GlobalProvider>
+        <Toaster richColors position="top-center" />
         <BrowserRouter>
           <Navbar />
           <Routes>

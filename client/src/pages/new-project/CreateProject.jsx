@@ -10,6 +10,7 @@ import "./createProject.css";
 
 import { CloudArrowDown } from "phosphor-react";
 import { GlobalContext } from "../../context/GlobalProvider";
+import { toast } from "sonner";
 
 const CreateProject = () => {
   const { cookie } = useContext(GlobalContext);
@@ -63,8 +64,10 @@ const CreateProject = () => {
 
       const { action, message } = response.data;
       if (action === "success") {
-        alert(message);
+        toast.success(message);
         navigate("/projects");
+      } else {
+        toast.error(message);
       }
     } catch (error) {
       console.error(`error:create-project:${error.message}`);

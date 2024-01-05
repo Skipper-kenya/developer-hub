@@ -6,6 +6,7 @@ import Auth from "./Auth";
 
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalProvider";
+import { toast } from "sonner";
 
 const Login = () => {
   const { setCookie } = useContext(GlobalContext);
@@ -39,9 +40,12 @@ const Login = () => {
       };
 
       window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
-      alert(message);
+
       if (token) {
+        toast.success(message);
         navigate("/");
+      } else {
+        toast.error(message);
       }
       setLoading(false);
     } catch (error) {
