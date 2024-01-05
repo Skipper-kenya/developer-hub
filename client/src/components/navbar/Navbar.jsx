@@ -4,6 +4,7 @@ import "./navbar.css";
 import { DotsNine, List, X } from "phosphor-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalProvider";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Navbar = () => {
         userId: "",
         userName: "",
       });
+      toast.info("successful logout");
     };
     window.localStorage.setItem("userDetails", deleteDetails());
 
