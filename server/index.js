@@ -12,8 +12,10 @@ import { projectsRouter } from "./routes/projects.js";
 
 const app = express();
 
+//middlewares
 app.use(express.json());
 app.use(cors());
+
 app.use("/auth", AuthRouter);
 app.use("/projects", projectsRouter);
 
