@@ -90,49 +90,7 @@ const Display = ({ allProjects, myProject, spin }) => {
               </Container>
             </>
 
-            // <div className="projects_window">
-            //   {allProjects?.map((proj, idx) => {
-            //     const { name, description, link, skills, ownerName } = proj;
-
-            //     return (
-            //       <div key={idx} className="project">
-            //         <div className="theme">
-            //           <p>
-            //             <User />
-            //             {ownerName}
-            //           </p>
-            //         </div>
-            //         <div className="project_details">
-            //           <h3>{name}</h3>
-
-            //           <div className="pro_title">
-            //             <h5>
-            //               <PenNibStraight /> Skills
-            //             </h5>{" "}
-            //             <div className="pro_cont">
-            //               {skills.map((skill, idx) => (
-            //                 <p key={idx}>{skill},</p>
-            //               ))}
-            //             </div>
-            //           </div>
-            //           <div className="pro_title">
-            //             <h5>
-            //               <Notepad /> Description
-            //             </h5>
-            //             <p>{description}</p>
-            //           </div>
-            //         </div>
-            //         <div className="btn_holder">
-            //           <button>
-            //             <a href={link} target="_blank">
-            //               View site <Link />
-            //             </a>
-            //           </button>
-            //         </div>
-            //       </div>
-            //     );
-            //   })}
-            // </div>
+        
           )}
         </>
       ) : (
