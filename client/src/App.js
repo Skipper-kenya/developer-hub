@@ -14,6 +14,7 @@ const LazyCreateProject = React.lazy(() =>
   import("./pages/new-project/CreateProject")
 );
 const LazyProjects = React.lazy(() => import("./pages/projects/Projects"));
+    // "react": "^18.2.0",
 
 function App() {
   const [spin, setSpin] = useState(false);
