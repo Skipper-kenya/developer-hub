@@ -10,7 +10,7 @@ import { GlobalContext } from "../../context/GlobalProvider";
 import "./projects.css";
 import Display from "./Display";
 import { useNavigate } from "react-router-dom";
-const Projects = () => {
+const Projects = ({ spin, setSpin }) => {
   const navigate = useNavigate();
 
   const { cookie } = useContext(GlobalContext);
@@ -19,24 +19,22 @@ const Projects = () => {
   const [allProjects, setAllProjects] = useState([]);
   const [myProject, setMyProject] = useState(false);
 
-  const [loading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProjects = async () => {
       dispatch(getDetails());
       try {
-        setLoading(true);
+        setSpin(true);
         const response = await axios.get(
           `${process.env.REACT_APP_GET_PROJECTS}/${token}`
         );
         const { projects } = response.data;
 
         setAllProjects([...projects]);
-        setLoading(false);
+        setSpin(false);
       } catch (error) {
-        setLoading(false);
+        setSpin(false);
         console.log(error.message);
       }
     };
@@ -49,16 +47,16 @@ const Projects = () => {
   const handleAllProjects = async () => {
     setMyProject(false);
     try {
-      setLoading(true);
+      setSpin(true);
       const response = await axios.get(
         `${process.env.REACT_APP_GET_PROJECTS}/${token}`
       );
       const { projects } = response.data;
 
       setAllProjects([...projects]);
-      setLoading(false);
+      setSpin(false);
     } catch (error) {
-      setLoading(false);
+      setSpin(false);
       console.log(error.message);
     }
   };
@@ -67,7 +65,7 @@ const Projects = () => {
     setMyProject(true);
 
     try {
-      setLoading(true);
+      setSpin(true);
       const response = await axios.get(
         `${process.env.REACT_APP_GET_MY_PROJECTS}/${userId}/${token}`
       );
@@ -75,9 +73,9 @@ const Projects = () => {
       const { myProjects } = response.data;
 
       setAllProjects([...myProjects]);
-      setLoading(false);
+      setSpin(false);
     } catch (error) {
-      setLoading(false);
+      setSpin(false);
       console.log(error.message);
     }
   };
@@ -110,7 +108,8 @@ const Projects = () => {
           <Display
             allProjects={allProjects}
             myProject={myProject}
-            loading={loading}
+            spin={spin}
+            setSpin={setSpin}
           />
         </>
       ) : (

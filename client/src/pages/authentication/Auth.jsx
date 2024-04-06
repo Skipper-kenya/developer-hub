@@ -4,7 +4,7 @@ import "./auth.css";
 
 import { Link } from "react-router-dom";
 
-const Auth = ({ name, btnName, u, p, su, sp, handleSubmit, loading }) => {
+const Auth = ({ name, btnName, u, p, su, sp, handleSubmit }) => {
   return (
     <div className="auth-wrapper">
       <h3>{name} page</h3>
@@ -37,10 +37,7 @@ const Auth = ({ name, btnName, u, p, su, sp, handleSubmit, loading }) => {
             />
           </div>
 
-          <button onClick={handleSubmit}>
-            {" "}
-            {loading ? "Processing..." : btnName}
-          </button>
+          <button onClick={handleSubmit}>{btnName}</button>
           <p>
             {name === "Login" ? (
               <>

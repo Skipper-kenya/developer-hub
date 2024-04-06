@@ -1,11 +1,25 @@
 import React, { useState } from "react";
 import { Link, Notebook, Notepad, PenNibStraight, User } from "phosphor-react";
-
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardActions,
+  Container,
+  Divider,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { More } from "@mui/icons-material";
 import Undraw from "../../assets/5.png";
 import Spinner from "../../components/Loading/Spinner";
 import { useNavigate } from "react-router-dom";
 
-const Display = ({ allProjects, myProject, loading }) => {
+const Display = ({ allProjects, myProject, spin }) => {
   const navigate = useNavigate();
 
   return (
@@ -13,53 +27,112 @@ const Display = ({ allProjects, myProject, loading }) => {
       {(myProject && allProjects.length > 0) ||
       (!myProject && allProjects.length > 0) ? (
         <>
-          {loading ? (
+          {spin ? (
             <Spinner />
           ) : (
-            <div className="projects_window">
-              {allProjects?.map((proj, idx) => {
-                const { name, description, link, skills, ownerName } = proj;
+            <>
+              <Container>
+                <Grid container spacing={2}>
+                  {allProjects?.map((project, idx) => {
+                    const { name, description, link, skills, ownerName } =
+                      project;
+                    return (
+                      <Grid key={idx} item xs={6} sm={6} md={4} lg={3}>
+                        <Card>
+                          <CardHeader
+                            title={name}
+                            action={
+                              <IconButton>
+                                <More />
+                              </IconButton>
+                            }
+                            subheader={ownerName}
+                            avatar={
+                              <Avatar sx={{ background: "coral" }}>
+                                {ownerName[0].toUpperCase()}
+                              </Avatar>
+                            }
+                          />
+                          <CardContent>
+                            <Typography>{description}</Typography>
+                            <Divider />
+                            <Grid container spacing={2}>
+                              {skills?.map((skill, idx) => (
+                                <Grid
+                                  item
+                                  key={idx}
+                                  xs={12}
+                                  sm={6}
+                                  md={4}
+                                  lg={3}
+                                >
+                                  <Typography color="secondary">
+                                    {skill}
+                                  </Typography>
+                                </Grid>
+                              ))}
+                            </Grid>
+                          </CardContent>
+                          <CardActions>
+                            <Button
+                              variant="contained"
+                              href={link}
+                              target="_blank"
+                            >
+                              View Project
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      </Grid>
+                    );
+                  })}
+                </Grid>
+              </Container>
+            </>
 
-                return (
-                  <div key={idx} className="project">
-                    <div className="theme">
-                      <p>
-                        <User />
-                        {ownerName}
-                      </p>
-                    </div>
-                    <div className="project_details">
-                      <h3>{name}</h3>
+            // <div className="projects_window">
+            //   {allProjects?.map((proj, idx) => {
+            //     const { name, description, link, skills, ownerName } = proj;
 
-                      <div className="pro_title">
-                        <h5>
-                          <PenNibStraight /> Skills
-                        </h5>{" "}
-                        <div className="pro_cont">
-                          {skills.map((skill, idx) => (
-                            <p key={idx}>{skill},</p>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="pro_title">
-                        <h5>
-                          <Notepad /> Description
-                        </h5>
-                        <p>{description}</p>
-                      </div>
-                    </div>
-                    <div className="btn_holder">
-                      <button>
-                        <a href={link} target="_blank">
-                          {" "}
-                          View site <Link />
-                        </a>
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            //     return (
+            //       <div key={idx} className="project">
+            //         <div className="theme">
+            //           <p>
+            //             <User />
+            //             {ownerName}
+            //           </p>
+            //         </div>
+            //         <div className="project_details">
+            //           <h3>{name}</h3>
+
+            //           <div className="pro_title">
+            //             <h5>
+            //               <PenNibStraight /> Skills
+            //             </h5>{" "}
+            //             <div className="pro_cont">
+            //               {skills.map((skill, idx) => (
+            //                 <p key={idx}>{skill},</p>
+            //               ))}
+            //             </div>
+            //           </div>
+            //           <div className="pro_title">
+            //             <h5>
+            //               <Notepad /> Description
+            //             </h5>
+            //             <p>{description}</p>
+            //           </div>
+            //         </div>
+            //         <div className="btn_holder">
+            //           <button>
+            //             <a href={link} target="_blank">
+            //               View site <Link />
+            //             </a>
+            //           </button>
+            //         </div>
+            //       </div>
+            //     );
+            //   })}
+            // </div>
           )}
         </>
       ) : (

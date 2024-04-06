@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Toaster } from "sonner";
-
+import { Spin } from "antd";
 import Navbar from "./components/navbar/Navbar";
 
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -8,23 +8,42 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/authentication/Login";
 import Register from "./pages/authentication/Register";
-import CreateProject from "./pages/new-project/CreateProject";
 import GlobalProvider from "./context/GlobalProvider";
-import Projects from "./pages/projects/Projects";
+
+const LazyCreateProject = React.lazy(() =>
+  import("./pages/new-project/CreateProject")
+);
+const LazyProjects = React.lazy(() => import("./pages/projects/Projects"));
 
 function App() {
+  const [spin, setSpin] = useState(false);
   return (
     <>
       <GlobalProvider>
+        <Spin fullscreen spinning={spin} />
         <Toaster richColors position="top-center" />
         <BrowserRouter>
           <Navbar />
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/create" element={<CreateProject />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/login" element={<Login setSpin={setSpin} />} />
+            <Route path="/register" element={<Register setSpin={setSpin} />} />
+            <Route
+              path="/create"
+              element={
+                <React.Suspense>
+                  <LazyCreateProject spin={spin} setSpin={setSpin} />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/projects"
+              element={
+                <React.Suspense>
+                  <LazyProjects setSpin={setSpin} spin={spin} />
+                </React.Suspense>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </GlobalProvider>

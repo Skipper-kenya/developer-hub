@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalProvider";
 import { toast } from "sonner";
 
-const Login = () => {
+const Login = ({ setSpin }) => {
   const { setCookie } = useContext(GlobalContext);
 
   const navigate = useNavigate();
@@ -16,12 +16,10 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loading, setLoading] = useState(false);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setSpin(true);
       const response = await axios.post(process.env.REACT_APP_LOGIN, {
         username,
         password,
@@ -47,9 +45,9 @@ const Login = () => {
       } else {
         toast.error(message);
       }
-      setLoading(false);
+      setSpin(false);
     } catch (error) {
-      setLoading(false);
+      setSpin(false);
       console.log(`err:login-client:${error.message}`);
     }
   };
@@ -64,7 +62,6 @@ const Login = () => {
         p={password}
         su={setUsername}
         sp={setPassword}
-        loading={loading}
       />
     </>
   );

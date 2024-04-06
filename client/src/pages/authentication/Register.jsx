@@ -5,11 +5,9 @@ import Auth from "./Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-const Register = () => {
+const Register = ({ setSpin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -17,18 +15,18 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      setLoading(true);
+      setSpin(true);
       const response = await axios.post(process.env.REACT_APP_REGISTER, {
         username,
         password,
       });
 
       const { message } = response.data;
-      setLoading(false);
+      setSpin(false);
       toast(message);
       navigate("/login");
     } catch (error) {
-      setLoading(false);
+      setSpin(false);
       console.log(`error:register-client:${error.message}`);
     }
   };
@@ -43,7 +41,6 @@ const Register = () => {
         p={password}
         su={setUsername}
         sp={setPassword}
-        loading={loading}
       />
     </>
   );
