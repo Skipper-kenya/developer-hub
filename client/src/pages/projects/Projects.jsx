@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
 import Undraw from "../../assets/1.png";
-
 import getDetails from "../../redux/details/detailsAction";
 import { GlobalContext } from "../../context/GlobalProvider";
 
